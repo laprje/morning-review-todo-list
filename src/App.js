@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+//this is unfinished and non-functional
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+//Libraries
+import React, { Component } from 'react';
+
+//Components
+import Todo from './components/Todo';
+
+//Stylesheets
+import "./App.css";
+
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      list: [],
+      input: ''
+    };
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleChange = (e) => {
+    this.setState({input: e.target.value})
+  }
+
+  handleClick(){
+    this.setState({list: [...this.state.list, this.state.input]})
+  }
+
+  render() {
+    return(
+      <div className='app-body'>
+        <input className='input-box' placeholder='Type here' onChange={this.handleChange} />
+        <button className='add-button' onclick={this.handleClick}>Add Task</button>
+      </div>
+    )
+  }
 }
-
-export default App;
